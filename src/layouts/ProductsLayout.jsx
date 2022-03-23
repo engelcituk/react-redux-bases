@@ -5,7 +5,7 @@ const ProductsLayout = () => {
   return (
     <>
       <Header/>
-      <main className='container'>
+      <main className='container mt-5'>
           <Outlet/>
       </main>
     </>
