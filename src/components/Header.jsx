@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -5,12 +6,19 @@ const Header = () => {
         className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between"
     >
         <div className="container">
-            <h1>Crud - React, Redux, Rest API, Axios</h1>
+          <h1>
+            <Link to={'/'}
+              className='text-white'
+            >
+              Crud - React, Redux, Rest API, Axios
+            </Link>
+          </h1>
+           
         </div>
-        <a
-            href="/productos/nuevo"
+        <Link
+            to='productos/nuevo'
             className="btn btn-danger nuevo-post d-block d-md-inline-block"
-        >Agregar producto &#43; </a>
+        >Nuevo Proyecto &#43;</Link>
     </nav>
   )
 }
