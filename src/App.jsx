@@ -21,4 +21,6 @@ function App() {
   );
 }
 
-export default App;
+export default App
+
+// json-server db.json --port 4000
