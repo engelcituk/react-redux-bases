@@ -8,7 +8,6 @@ import Products from './pages/Products'
 import NuevoProducto from './pages/NuevoProducto'
 import EditarProducto from './pages/EditarProducto'
 
-
 function App() {
   return (
     <BrowserRouter>
