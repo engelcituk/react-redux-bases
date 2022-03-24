@@ -22,6 +22,7 @@ export default function ( state = initialState, action) {
             return {
                 ...state,
                 loading: false, //loader regresa a false
+                error: null,
                 productos: [ ...state.productos, action.payload ]//mutamos el state de productos
             }
         case AGREGAR_PRODUCTO_ERROR:
@@ -32,12 +33,12 @@ export default function ( state = initialState, action) {
                 error: action.payload
             }
         //para descarga de productos
-        
         case DESCARGA_PRODUCTOS_EXITO:
             return {
                 ...state,
                 loading: false, //loader regresa a false
-                productos: [ ...state.productos, action.payload ]//mutamos el state de productos
+                error: null,
+                productos: action.payload //mutamos el state de productos
             }
         default:
             return state;
