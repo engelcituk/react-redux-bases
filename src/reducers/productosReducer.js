@@ -20,8 +20,12 @@ export default function ( state = initialState, action) {
                 loading: false, //loader regresa a false
                 productos: [ ...state.productos, action.payload ]//mutamos el state de productos
             }
-        //     break;
-    
+        case AGREGAR_PRODUCTO_ERROR:
+            return {
+                ...state,
+                loading: false, //loader regresa a false
+                error: action.payload
+            }
         default:
             return state;
     }

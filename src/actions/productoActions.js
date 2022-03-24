@@ -22,7 +22,7 @@ const agregarProductoExito = producto => ({
     payload: producto
 })
 //si hubo un error
-const agregarProductoError = (bool) => ({
+const agregarProductoError = bool => ({
     type: AGREGAR_PRODUCTO_ERROR,
     payload: bool
 })
