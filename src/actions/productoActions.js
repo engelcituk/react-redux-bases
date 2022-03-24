@@ -56,7 +56,7 @@ export function obtenerProductosAction() {
         dispatch( descargarProductos() )
         try {
             //obtenemos en la API
-            const respuesta = await clienteAxios('/productos')
+            const respuesta = await clienteAxios('/productosss')
 
             //si todo sale bien, actualiza el state
             dispatch( descargarProductosExito(respuesta.data) )

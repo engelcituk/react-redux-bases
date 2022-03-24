@@ -10,8 +10,8 @@ const Products = () => {
   const dispatch = useDispatch()
   //acceder al state del store
   const productos = useSelector( state => state.productos.productos )
-  const cargando = useSelector( state => state.productos.loading )
   const error = useSelector( state => state.productos.error )
+  const cargando = useSelector( state => state.productos.loading )
   
   useEffect(() => {
     //consultar la api
@@ -21,6 +21,12 @@ const Products = () => {
   return (
     <>
       <h2 className="text-center my-5"> Listado de productos</h2>
+      {
+        error ? <p className='font-weight-bold alert alert-danger mt-4 text-center '>Hubo un error</p> : null
+      }
+      {
+        cargando ? <p className='text-center'>Cargando</p> : null
+      }
       <table className="table table-striped">
         <thead className="bg-primary table-dark">
           <tr>
