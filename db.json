@@ -29,6 +29,16 @@
       "nombre": "tomate crudo",
       "precio": 45,
       "id": 6
+    },
+    {
+      "nombre": "pollo frito",
+      "precio": 45,
+      "id": 7
+    },
+    {
+      "nombre": "test",
+      "precio": 56,
+      "id": 8
     }
   ]
 }
