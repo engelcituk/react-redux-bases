@@ -1,8 +1,8 @@
 import { AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO, AGREGAR_PRODUCTO_ERROR} from '../types'
 
 //crear nuevos productso
-export function crearNuevoProductoAction() {
+export function crearNuevoProductoAction(producto) {
     return () => {
-        console.log('desde action')
+        console.log(producto)
     }
 }
