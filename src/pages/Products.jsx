@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Producto from '../components/Producto'
 
 //Actions de redux
 import { obtenerProductosAction } from '../actions/productoActions'
@@ -9,13 +10,14 @@ const Products = () => {
   const dispatch = useDispatch()
   //acceder al state del store
   const productos = useSelector( state => state.productos.productos )
+  const cargando = useSelector( state => state.productos.loading )
+  const error = useSelector( state => state.productos.error )
   
   useEffect(() => {
     //consultar la api
     const cargarProductos = () => dispatch( obtenerProductosAction() )
     cargarProductos()
   }, [])
-  console.log(productos)
   return (
     <>
       <h2 className="text-center my-5"> Listado de productos</h2>
@@ -28,7 +30,19 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
-          
+          {
+            productos.length === 0 ?
+            (
+              <tr>
+                <td colSpan='3'>No hay productos</td>
+              </tr>
+            )
+            : (
+              productos.map(producto => (
+                <Producto key={producto.id} producto={producto} />
+              ))
+            )
+          }
         </tbody>
       </table>
     </>
