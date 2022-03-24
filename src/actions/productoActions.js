@@ -56,9 +56,10 @@ export function obtenerProductosAction() {
         dispatch( descargarProductos() )
         try {
             //obtenemos en la API
-            await clienteAxios('/productos')
+            const respuesta = await clienteAxios('/productos')
+
             //si todo sale bien, actualiza el state
-            dispatch( descargarProductosExito() )
+            dispatch( descargarProductosExito(respuesta.data) )
             //Alert success
             
         } catch (error) {
@@ -74,10 +75,10 @@ const descargarProductos = () => ({
     type: COMENZAR_DESCARGA_PRODUCTOS,
     payload: true
 })
-//si el producto se guarda en la bd
-const descargarProductosExito = producto => ({
+//si la petición fue exitosa
+const descargarProductosExito = productos => ({
     type: DESCARGA_PRODUCTOS_EXITO,
-    payload: producto
+    payload: productos
 })
 //si hubo un error
 const descargarProductosError = bool => ({
