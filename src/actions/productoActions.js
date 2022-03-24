@@ -1,4 +1,8 @@
-import { AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO, AGREGAR_PRODUCTO_ERROR } from '../types'
+import {
+    AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO, AGREGAR_PRODUCTO_ERROR,
+    COMENZAR_DESCARGA_PRODUCTOS, DESCARGA_PRODUCTOS_EXITO, DESCARGA_PRODUCTOS_ERROR,
+} from '../types'
+
 import clienteAxios from '../config/axios'  
 import Swal from 'sweetalert2'
 
@@ -43,5 +47,40 @@ const agregarProductoExito = producto => ({
 //si hubo un error
 const agregarProductoError = bool => ({
     type: AGREGAR_PRODUCTO_ERROR,
+    payload: bool
+})
+
+//Función que obtiene los productos desde la API
+export function obtenerProductosAction() {
+    return async (dispatch) => {
+        dispatch( descargarProductos() )
+        try {
+            //obtenemos en la API
+            await clienteAxios('/productos')
+            //si todo sale bien, actualiza el state
+            dispatch( descargarProductosExito() )
+            //Alert success
+            
+        } catch (error) {
+            console.log(error.response)
+            //si hay un error cambiar el state error
+            dispatch( descargarProductosError(true) )
+           
+        }
+    }
+}
+
+const descargarProductos = () => ({
+    type: COMENZAR_DESCARGA_PRODUCTOS,
+    payload: true
+})
+//si el producto se guarda en la bd
+const descargarProductosExito = producto => ({
+    type: DESCARGA_PRODUCTOS_EXITO,
+    payload: producto
+})
+//si hubo un error
+const descargarProductosError = bool => ({
+    type: DESCARGA_PRODUCTOS_ERROR,
     payload: bool
 })
