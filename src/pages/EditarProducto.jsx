@@ -1,13 +1,33 @@
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { editarProductoAction } from '../actions/productoActions'
 
 const EditarProducto = () => {
+  //nuevo state de producto
+  const [ producto, setProducto ] = useState({
+    nombre: '',
+    precio: 0,
+  })
+ 
   //utilizar useDispatch y te crea una función
   const dispatch = useDispatch()
+  //producto editar
+  const productoEditar = useSelector( state => state.productos.productoEditar )
 
-  const producto = useSelector( state => state.productos.productoEditar )
-  if(!producto) return null
+  //llenar el state automaticamente con 
+  useEffect(() => {
+    setProducto(productoEditar)
+  }, [productoEditar])
+  //leer los datos del formulario
+  const onChangeFormulario = e => {
+    setProducto({
+      ...producto,
+      [e.target.name]: e.target.value
+    })
+  }
+
   const { nombre, precio, id } = producto
+
   const submitEditarProducto = e => {
     e.preventDefault()
     //Validar formulario
@@ -15,6 +35,7 @@ const EditarProducto = () => {
       return 
     }
   }
+
   return (
     <div className="row justify-content-center">
       <div className="col-md-8">
@@ -33,6 +54,7 @@ const EditarProducto = () => {
                   placeholder="Nombre producto"
                   name="nombre"
                   value={nombre}
+                  onChange={onChangeFormulario}
                 />
               </div>
               <div className="form-group">
@@ -44,6 +66,7 @@ const EditarProducto = () => {
                   placeholder="Precio producto"
                   name="precio"
                   value={precio}
+                  onChange={onChangeFormulario}
                 />
               </div>
               <button type="submit" className="btn btn-primary font-weight-bold text-uppercase d-block w-100">
