@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { editarProductoAction } from '../actions/productoActions'
 
 const EditarProducto = () => {
+  const navigate = useNavigate()
   //nuevo state de producto
   const [ producto, setProducto ] = useState({
     nombre: '',
@@ -13,6 +15,7 @@ const EditarProducto = () => {
   const dispatch = useDispatch()
   //producto editar
   const productoEditar = useSelector( state => state.productos.productoEditar )
+  const error = useSelector( state => state.productos.error )
 
   //llenar el state automaticamente con 
   useEffect(() => {
@@ -26,13 +29,19 @@ const EditarProducto = () => {
     })
   }
 
-  const { nombre, precio, id } = producto
+  const { nombre, precio } = producto
 
   const submitEditarProducto = e => {
     e.preventDefault()
     //Validar formulario
     if( nombre.trim() === '' || precio <= 0 ){
       return 
+    }
+    dispatch( editarProductoAction(producto) ) // mandar llamar el action de productoActions
+    //sino hubo error redirijo al home
+    if(!error){
+      //redireccionar
+      navigate('/')
     }
   }
 

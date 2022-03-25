@@ -143,26 +143,33 @@ export function editarProductoAction(producto) {
         dispatch( editarProducto(producto) )
         try {
             //actualizamos en la API
-           const respuesta = await clienteAxios.put(`/productos/${producto.id}`, producto)
-           console.log(respuesta)
-           return
+           await clienteAxios.put(`/productos/${producto.id}`, producto)
             //si todo sale bien, actualiza el state
-            dispatch( borrarProductoExito() )
+            dispatch( editarProductoExito(producto) )
             //Alert success
             Swal.fire(
-                'Borrado!',
-                'Producto borrado.',
+                'Actualizado!',
+                'Producto actualizado.',
                 'success'
               )
         } catch (error) {
-            console.log(error.response)
+            console.log(error)
             //si hay un error cambiar el state error
-            dispatch( borrarProductoError(true) )
+            dispatch( editarProductoError(true) )
         }
     }   
 }
 
-const editarProducto = producto => ({
-    type: COMENZAR_EDICION_PRODUCTO,
+const editarProducto = () => ({
+    type: COMENZAR_EDICION_PRODUCTO,  
+})
+//si la petición fue exitosa
+const editarProductoExito = producto => ({
+    type: PRODUCTO_EDITADO_EXITO,
     payload: producto
+})
+//si hubo un error
+const editarProductoError = bool => ({
+    type: PRODUCTO_EDITADO_ERROR,
+    payload: bool
 })

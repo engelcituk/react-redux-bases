@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 //Actions de redux
 import { crearNuevoProductoAction } from '../actions/productoActions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -27,7 +27,6 @@ const NuevoProducto = ({history}) => {
     }
     //sino hay errores
     //crear nuevo producto
-
     dispatch( crearNuevoProductoAction({nombre, precio}) ) // mandar llamar el action de productoActions
 
     if(!error){
