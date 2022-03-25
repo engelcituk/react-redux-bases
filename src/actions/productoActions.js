@@ -91,14 +91,12 @@ const descargarProductosError = bool => ({
 export function borrarProductoAction(id) {
     return async (dispatch) => {
         dispatch( obtenerProductoEliminar(id) )
-        console.log(id)
-        return
         try {
-            //obtenemos en la API
-            const respuesta = await clienteAxios('/productos')
+            //eliminamos en la API
+           await clienteAxios.delete(`/productos/${id}`)
 
             //si todo sale bien, actualiza el state
-            dispatch( borrarProductoExito(respuesta.data) )
+            dispatch( borrarProductoExito() )
             //Alert success
             
         } catch (error) {
@@ -115,9 +113,8 @@ const obtenerProductoEliminar = id => ({
     payload: id
 })
 //si la petición fue exitosa
-const borrarProductoExito = productos => ({
+const borrarProductoExito = () => ({
     type: PRODUCTO_ELIMINADO_EXITO,
-    payload: productos
 })
 //si hubo un error
 const borrarProductoError = bool => ({
