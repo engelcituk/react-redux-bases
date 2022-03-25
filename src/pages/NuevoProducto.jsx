@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 //Actions de redux
 import { crearNuevoProductoAction } from '../actions/productoActions'
+import { mostrarAlertaAction } from '../actions/alertaActions' //actions de alertas
 import { useDispatch, useSelector } from 'react-redux'
 
 const NuevoProducto = ({history}) => {
@@ -15,6 +16,8 @@ const NuevoProducto = ({history}) => {
   //acceder al state del store
   const cargando = useSelector( state => state.productos.loading )
   const error = useSelector( state => state.productos.error )
+  const alerta = useSelector( state => state.alerta )
+
 
   //mandar llamar el action de productoActions
   // const agregarProduct = ( producto ) => dispatch( crearNuevoProductoAction(producto) )
@@ -23,6 +26,11 @@ const NuevoProducto = ({history}) => {
     e.preventDefault()
     //Validar formulario
     if( nombre.trim() === '' || precio <= 0 ){
+      const alerta = {
+        msg: 'Ambos campos son obligatorios',
+        classes: 'alert alert-danger text-center text-uppercase p3'
+      }
+      dispatch( mostrarAlertaAction( alerta ) ) // mandar llamar el action de alertaActions
       return 
     }
     //sino hay errores
