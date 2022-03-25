@@ -11,6 +11,7 @@ const initialState = {
     error: null,    
     loading: false,
     productoEliminar: null,
+    productoEditar: null,
 }
 
 export default function ( state = initialState, action) {
