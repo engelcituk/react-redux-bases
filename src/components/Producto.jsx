@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 //redux
 import { useDispatch } from 'react-redux' 
-import { borrarProductoAction } from '../actions/productoActions'
+import { borrarProductoAction, obtenerProductoEditarAction } from '../actions/productoActions'
 
 const Producto = ({producto}) => {
     const navigate = useNavigate()
@@ -30,7 +30,8 @@ const Producto = ({producto}) => {
     }
     //función que redirige de forma programada
     const redireccionarEdicion = producto => {
-      navigate(`productos/editar/${id}`)
+        dispatch( obtenerProductoEditarAction(producto) ) // mandar llamar el action de productoActions
+        navigate(`productos/editar/${id}`)
     }
 
     return (

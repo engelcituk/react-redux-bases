@@ -1,7 +1,8 @@
 import {
     AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO, AGREGAR_PRODUCTO_ERROR,
     COMENZAR_DESCARGA_PRODUCTOS, DESCARGA_PRODUCTOS_EXITO, DESCARGA_PRODUCTOS_ERROR,
-    OBTENER_PRODUCTO_ELIMINAR, PRODUCTO_ELIMINADO_EXITO, PRODUCTO_ELIMINADO_ERROR
+    OBTENER_PRODUCTO_ELIMINAR, PRODUCTO_ELIMINADO_EXITO, PRODUCTO_ELIMINADO_ERROR,
+    OBTENER_PRODUCTO_EDITAR, PRODUCTO_EDITADO_EXITO, PRODUCTO_EDITADO_ERROR,
 } from '../types'
 
 import clienteAxios from '../config/axios'  
@@ -94,7 +95,6 @@ export function borrarProductoAction(id) {
         try {
             //eliminamos en la API
            await clienteAxios.delete(`/productos/${id}`)
-
             //si todo sale bien, actualiza el state
             dispatch( borrarProductoExito() )
             //Alert success
@@ -107,7 +107,6 @@ export function borrarProductoAction(id) {
             console.log(error.response)
             //si hay un error cambiar el state error
             dispatch( borrarProductoError(true) )
-           
         }
     }   
 }
@@ -124,4 +123,16 @@ const borrarProductoExito = () => ({
 const borrarProductoError = bool => ({
     type: PRODUCTO_ELIMINADO_ERROR,
     payload: bool
+})
+
+//Colocar producto en edición
+export function obtenerProductoEditarAction(producto) {
+    return (dispatch) => {
+        dispatch( obtenerProductoAction(producto) )
+    }
+}
+
+const obtenerProductoAction = producto => ({
+    type: OBTENER_PRODUCTO_EDITAR,
+    payload: producto
 })
