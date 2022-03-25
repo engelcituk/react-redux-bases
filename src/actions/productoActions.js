@@ -1,6 +1,7 @@
 import {
     AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO, AGREGAR_PRODUCTO_ERROR,
     COMENZAR_DESCARGA_PRODUCTOS, DESCARGA_PRODUCTOS_EXITO, DESCARGA_PRODUCTOS_ERROR,
+    OBTENER_PRODUCTO_ELIMINAR, PRODUCTO_ELIMINADO_EXITO, PRODUCTO_ELIMINADO_ERROR
 } from '../types'
 
 import clienteAxios from '../config/axios'  
@@ -56,7 +57,7 @@ export function obtenerProductosAction() {
         dispatch( descargarProductos() )
         try {
             //obtenemos en la API
-            const respuesta = await clienteAxios('/productosss')
+            const respuesta = await clienteAxios('/productos')
 
             //si todo sale bien, actualiza el state
             dispatch( descargarProductosExito(respuesta.data) )
@@ -83,5 +84,43 @@ const descargarProductosExito = productos => ({
 //si hubo un error
 const descargarProductosError = bool => ({
     type: DESCARGA_PRODUCTOS_ERROR,
+    payload: bool
+})
+
+//selecciona y elimina el producto
+export function borrarProductoAction(id) {
+    return async (dispatch) => {
+        dispatch( obtenerProductoEliminar(id) )
+        console.log(id)
+        return
+        try {
+            //obtenemos en la API
+            const respuesta = await clienteAxios('/productos')
+
+            //si todo sale bien, actualiza el state
+            dispatch( borrarProductoExito(respuesta.data) )
+            //Alert success
+            
+        } catch (error) {
+            console.log(error.response)
+            //si hay un error cambiar el state error
+            dispatch( borrarProductoError(true) )
+           
+        }
+    }   
+}
+
+const obtenerProductoEliminar = id => ({
+    type: OBTENER_PRODUCTO_ELIMINAR,
+    payload: id
+})
+//si la petición fue exitosa
+const borrarProductoExito = productos => ({
+    type: PRODUCTO_ELIMINADO_EXITO,
+    payload: productos
+})
+//si hubo un error
+const borrarProductoError = bool => ({
+    type: PRODUCTO_ELIMINADO_ERROR,
     payload: bool
 })
