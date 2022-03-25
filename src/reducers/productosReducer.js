@@ -47,12 +47,12 @@ export default function ( state = initialState, action) {
         case OBTENER_PRODUCTO_ELIMINAR:
             return {
                 ...state,
-                productoElimicnar: action.payload //mutamos el state de productoEliminar
+                productoEliminar: action.payload //mutamos el state de productoEliminar
             }
         case PRODUCTO_ELIMINADO_EXITO:
             return {
                 ...state,
-                productos: state.productos.filter( producto => producto.id !== state.productoEliminar )//elimino
+                productos: state.productos.filter( producto => producto.id !== state.productoEliminar ), //elimino
                 productoEliminar: null  //mutamos el state de productoEliminar
             }
         default:

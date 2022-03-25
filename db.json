@@ -24,21 +24,6 @@
       "nombre": "Jugo de Fresa",
       "precio": "200",
       "id": 5
-    },
-    {
-      "nombre": "tomate crudo",
-      "precio": 45,
-      "id": 6
-    },
-    {
-      "nombre": "pollo frito",
-      "precio": 45,
-      "id": 7
-    },
-    {
-      "nombre": "Jugo de naranja",
-      "precio": 45,
-      "id": 9
     }
   ]
 }

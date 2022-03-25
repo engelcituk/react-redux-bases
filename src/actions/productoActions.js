@@ -98,7 +98,11 @@ export function borrarProductoAction(id) {
             //si todo sale bien, actualiza el state
             dispatch( borrarProductoExito() )
             //Alert success
-            
+            Swal.fire(
+                'Borrado!',
+                'Producto borrado.',
+                'success'
+              )
         } catch (error) {
             console.log(error.response)
             //si hay un error cambiar el state error
