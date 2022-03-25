@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 //Actions de redux
 import { crearNuevoProductoAction } from '../actions/productoActions'
-import { mostrarAlertaAction } from '../actions/alertaActions' //actions de alertas
+import { mostrarAlertaAction, ocultarAlertaAction } from '../actions/alertaActions' //actions de alertas
 import { useDispatch, useSelector } from 'react-redux'
 
 const NuevoProducto = ({history}) => {
@@ -38,6 +38,7 @@ const NuevoProducto = ({history}) => {
     dispatch( crearNuevoProductoAction({nombre, precio}) ) // mandar llamar el action de productoActions
 
     if(!error){
+      dispatch( ocultarAlertaAction( alerta ) ) // mandar llamar el action de alertaActions, para limpiar alerta
       //redireccionar
       navigate('/')
     }

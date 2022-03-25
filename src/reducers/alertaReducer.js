@@ -15,7 +15,7 @@ export default function ( state = initialState, action) {
         case OCULTAR_ALERTA:
             return {
                 ...state,
-                alerta: null,
+                alerta: action.payload,
             }
         default:
             return state;

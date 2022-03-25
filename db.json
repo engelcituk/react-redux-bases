@@ -24,6 +24,21 @@
       "nombre": "Jugo de Fresa",
       "precio": "24",
       "id": 5
+    },
+    {
+      "nombre": "trggh",
+      "precio": 4,
+      "id": 6
+    },
+    {
+      "nombre": "ttt",
+      "precio": 7,
+      "id": 7
+    },
+    {
+      "nombre": "eeee",
+      "precio": 4,
+      "id": 8
     }
   ]
 }

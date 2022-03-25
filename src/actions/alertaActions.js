@@ -15,12 +15,12 @@ const crearAlerta = (alerta) => ({
 //ocultar alerta
 export function ocultarAlertaAction() {
     return async (dispatch) => {
-        dispatch( ocultarAlertaError() )
+        dispatch( limpiarAlerta() )
        
     }
 }
 
-const ocultarAlertaError = () => ({
+const limpiarAlerta = () => ({
     type: OCULTAR_ALERTA,
     payload: null
 })
